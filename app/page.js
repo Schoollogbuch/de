@@ -1,17 +1,36 @@
-"use client"; // Ermöglicht Interaktionen wie Klicks und Eingaben
+"use client";
 
 import React, { useState } from 'react';
 import { School, Lock, Mail, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+// Wir importieren die Supabase-Verbindung
+import { supabase } from '../lib/supabase'; 
+import { useRouter } from 'next/navigation';
 
 export default function SchoollogLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Diese Nachricht erscheint, bis wir die finale Supabase-Verbindung aktivieren
-    alert(`Login-Versuch für: ${email}\nDie Datenbank-Anbindung wird aktiv, sobald die App auf Vercel live ist!`);
+    setLoading(true);
+
+    // Hier passiert die echte Anmeldung bei Supabase
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      alert("Login fehlgeschlagen: " + error.message);
+    } else {
+      alert("Erfolgreich eingeloggt!");
+      // Hier leiten wir den Nutzer später zum Dashboard weiter
+      // router.push('/dashboard'); 
+    }
+    setLoading(false);
   };
 
   return (
@@ -57,8 +76,12 @@ export default function SchoollogLogin() {
             />
           </div>
 
-          <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4 shadow-lg shadow-[var(--accent)]/20">
-            Anmelden <ArrowRight size={22} />
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4 shadow-lg shadow-[var(--accent)]/20 disabled:opacity-50"
+          >
+            {loading ? 'Prüfe Daten...' : 'Anmelden'} <ArrowRight size={22} />
           </button>
         </form>
 
