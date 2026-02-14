@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { UserPlus, School, Mail, Lock, ShieldCheck, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '../../lib/supabase';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
