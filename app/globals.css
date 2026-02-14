@@ -2,32 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Winter (Dez - Feb): Blau & Weiß */
+:root {
+  --transition-speed: 0.8s;
+}
+
+/* Definition der Jahreszeiten-Farben */
 .winter-theme {
-  --bg-color: #f0f9ff;
-  --accent-color: #0284c7;
+  --main-bg: #f0f9ff;
+  --card-bg: #ffffff;
+  --accent: #0ea5e9;
+  --text: #0c4a6e;
 }
 
-/* Frühling (Mär - Mai): Grün & Rosa */
 .spring-theme {
-  --bg-color: #f0fdf4;
-  --accent-color: #16a34a;
+  --main-bg: #f0fdf4;
+  --card-bg: #ffffff;
+  --accent: #22c55e;
+  --text: #14532d;
 }
 
-/* Sommer (Jun - Aug): Gelb & Orange */
 .summer-theme {
-  --bg-color: #fffbeb;
-  --accent-color: #ea580c;
+  --main-bg: #fffbeb;
+  --card-bg: #ffffff;
+  --accent: #f59e0b;
+  --text: #78350f;
 }
 
-/* Herbst (Sep - Nov): Braun & Rot */
 .autumn-theme {
-  --bg-color: #fff7ed;
-  --accent-color: #9a3412;
+  --main-bg: #fef2f2;
+  --card-bg: #ffffff;
+  --accent: #b91c1c;
+  --text: #450a0a;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: #1f2937;
-  transition: all 1s ease-in-out;
+  background-color: var(--main-bg);
+  color: var(--text);
+  transition: background-color var(--transition-speed) ease;
+  min-height: 100vh;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0,0,0,0.05);
 }
