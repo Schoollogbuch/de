@@ -1,38 +1,70 @@
-import { LogIn } from 'lucide-react';
+"use client"; // Wichtig für Interaktionen
+import React, { useState } from 'react';
+import { School, Lock, Mail, ArrowRight } from 'lucide-react';
 
-export default function Home() {
+export default function SchoollogLogin() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    alert(`Login-Versuch für: ${email}. Anbindung an Supabase folgt im nächsten Schritt!`);
+  };
+
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md border-b-4 border-gray-200">
-        <div className="flex justify-center mb-6">
-          <div className="p-4 bg-gray-100 rounded-full text-blue-600">
-            <LogIn size={40} />
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="card w-full max-w-md p-8">
+        <div className="text-center mb-10">
+          <div className="inline-flex p-4 rounded-2xl bg-opacity-10 bg-current mb-4">
+            <School size={48} className="text-[var(--accent)]" />
           </div>
+          <h1 className="text-4xl font-black tracking-tight">Schoollog</h1>
+          <p className="opacity-60 mt-2 font-medium">Dein digitales Klassenzimmer</p>
         </div>
-        
-        <h1 className="text-4xl font-extrabold text-center mb-2 tracking-tight">Schoollog</h1>
-        <p className="text-center text-gray-500 mb-8">Dein digitales Schul-Logbuch</p>
-        
-        <div className="space-y-4">
-          <input 
-            type="email" 
-            placeholder="E-Mail (@cskiel.org)" 
-            className="w-full p-4 border-2 border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all"
-          />
-          <input 
-            type="password" 
-            placeholder="Passwort" 
-            className="w-full p-4 border-2 border-gray-100 rounded-xl focus:border-blue-500 outline-none transition-all"
-          />
-          <button className="w-full py-4 bg-black text-white rounded-xl font-bold hover:scale-[1.02] active:scale-[0.98] transition-all">
-            Anmelden
+
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 opacity-30" size={20} />
+            <input 
+              type="email" 
+              placeholder="Schul-E-Mail (@cskiel.org)"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-50 focus:border-[var(--accent)] outline-none transition-all text-black"
+              required
+            />
+          </div>
+
+          <div className="relative">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 opacity-30" size={20} />
+            <input 
+              type="password" 
+              placeholder="Passwort"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-100 focus:border-[var(--accent)] outline-none transition-all text-black"
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn-primary w-full flex items-center justify-center gap-2 text-lg">
+            Anmelden <ArrowRight size={20} />
           </button>
+        </form>
+
+        <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+          <p className="text-sm opacity-70">
+            Neu an der Schule? <br/>
+            <span className="text-[var(--accent)] font-bold cursor-pointer hover:underline">
+              Mit Registrierungscode beitreten
+            </span>
+          </p>
         </div>
-        
-        <p className="mt-8 text-center text-sm text-gray-400">
-          Noch kein Konto? <span className="text-blue-600 font-semibold cursor-pointer underline">Jetzt registrieren</span>
-        </p>
       </div>
-    </main>
+      
+      <footer className="mt-8 text-[10px] uppercase tracking-widest opacity-40">
+        © 2026 Schoollog Platform • Made for Schools
+      </footer>
+    </div>
   );
 }
