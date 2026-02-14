@@ -27,6 +27,7 @@ export default function SchoollogLogin() {
       alert("Login fehlgeschlagen: " + error.message);
     } else {
       alert("Erfolgreich eingeloggt!");
+      router.push('/dashboard');
       // Hier leiten wir den Nutzer später zum Dashboard weiter
       // router.push('/dashboard'); 
     }
