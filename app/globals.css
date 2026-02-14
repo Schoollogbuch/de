@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Winter (Dez - Feb): Blau & Weiß */
+.winter-theme {
+  --bg-color: #f0f9ff;
+  --accent-color: #0284c7;
+}
+
+/* Frühling (Mär - Mai): Grün & Rosa */
+.spring-theme {
+  --bg-color: #f0fdf4;
+  --accent-color: #16a34a;
+}
+
+/* Sommer (Jun - Aug): Gelb & Orange */
+.summer-theme {
+  --bg-color: #fffbeb;
+  --accent-color: #ea580c;
+}
+
+/* Herbst (Sep - Nov): Braun & Rot */
+.autumn-theme {
+  --bg-color: #fff7ed;
+  --accent-color: #9a3412;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: #1f2937;
+  transition: all 1s ease-in-out;
+}
